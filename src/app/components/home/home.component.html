@@ -1,0 +1,20 @@
+<ul
+  style="
+    list-style: 'none';
+    display: 'flex';
+    flex-wrap: 'wrap';
+    justify-content: space-around;
+  "
+>
+  <li *ngFor="let ecl of ecliteratures">
+    <p>
+      <img
+        [src]="ecl.Url"
+        alt="img"
+        style="width: '150px'; height: '150px'"
+      />
+    </p>
+  </li>
+</ul>
+
+
