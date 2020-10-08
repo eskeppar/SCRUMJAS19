@@ -12,19 +12,19 @@ export interface IEcliteratureService {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EcliteratureService implements IEcliteratureService {
   ecliteratures = new Subject<Ecliterature[]>();
   ecliterature$ = this.ecliteratures.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getEcliteratures(): void {
-    this.http.get('http://localhost:4000/api/productimages').subscribe((ecliteratures: Ecliterature[]) => {
-      this.ecliteratures.next(ecliteratures);
-    });
+    this.http
+      .get('https://eckurslitteratur.herokuapp.com/api/productimages')
+      .subscribe((ecliteratures: Ecliterature[]) => {
+        this.ecliteratures.next(ecliteratures);
+      });
   }
 }
-
-
