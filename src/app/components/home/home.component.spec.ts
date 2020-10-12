@@ -28,6 +28,10 @@ describe('HomeComponent', () => {
   it('should get ecliteratures when loading', () => {
     expect(component.ecliteratures.length).toBe(3);
   });
+
+  it('should get products when loading', () => {
+    expect(component.products.length).toBe(3);
+  });
 });
 
 

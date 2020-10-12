@@ -1,0 +1,50 @@
+<div class="order-wrapper">
+  <div class="title-product-wrapper">
+    <div class="title">
+      <div>Product Image</div>
+      <div>Product Title</div>
+      <div>Product Action</div>
+      <div>Total Cost:</div>
+    </div>
+    <div class="products-container-wrapper">
+      <div class="products-container">
+        <div class="absolute-container">
+          <div class="height-scroll-wrapper">
+            <div class="cart-product" *ngFor="let cartItem of cartItems">
+              <div>
+                <img
+                  src="{{ cartItem.imageUrl }}"
+                  alt=""
+                  width="150px"
+                  height="150px"
+                />
+              </div>
+              <div>{{ cartItem.product }}</div>
+              <div class="action-product">
+                <h5>Quantity: {{ cartItem.total }}</h5>
+                <button
+                  class="action-btn"
+                  (click)="onQuantityIncrease(cartItem)"
+                >
+                  +
+                </button>
+                <button
+                  class="action-btn"
+                  (click)="onQuantityDecrease(cartItem)"
+                >
+                  -
+                </button>
+                <button (click)="onRemoveOrder(cartItem)">Remove</button>
+              </div>
+              <div>{{ cartItem.total * cartItem.price }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
