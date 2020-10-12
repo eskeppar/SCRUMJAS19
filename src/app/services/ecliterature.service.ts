@@ -2,6 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
+export interface Product {
+  Id: number;
+  BrandId: number;
+  Product: string;
+  Price: number;
+  PercentOff: number;
+  Description: string;
+  IsFeatured: number;
+  Stars: number;
+  TaxId: number;
+}
 export interface Ecliterature {
   id: number;
   Url: string;
@@ -9,6 +20,7 @@ export interface Ecliterature {
 
 export interface IEcliteratureService {
   getEcliteratures(): void;
+  getProducts(): void;
 }
 
 @Injectable({
@@ -17,6 +29,9 @@ export interface IEcliteratureService {
 export class EcliteratureService implements IEcliteratureService {
   ecliteratures = new Subject<Ecliterature[]>();
   ecliterature$ = this.ecliteratures.asObservable();
+
+  products = new Subject<Product[]>();
+  products$ = this.products.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -27,4 +42,11 @@ export class EcliteratureService implements IEcliteratureService {
         this.ecliteratures.next(ecliteratures);
       });
   }
+
+  getProducts(): void {
+    this.http.get('http://localhost:4000/api/products').subscribe((products: Product[]) => {
+      this.products.next(products);
+    });
+  }
 }
+
